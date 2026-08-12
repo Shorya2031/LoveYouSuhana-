@@ -2703,10 +2703,42 @@ setInterval(
     },
     900
 );
+setInterval(
+    function(){
+
+        const element =
+            document.getElementById(
+                "loadingText"
+            );
+
+        if(element){
+
+            textIndex =
+                (
+                    textIndex + 1
+                ) %
+                loadingTexts.length;
+
+            element.innerText =
+                loadingTexts[
+                    textIndex
+                ];
+
+        }
+
+    },
+    900
+);
+
+
+/* =========================
+   START QUIZ
+========================= */
+
+loadQuestion();
 
 </script>
 
-
 </body>
 
-  </html>
+</html>
