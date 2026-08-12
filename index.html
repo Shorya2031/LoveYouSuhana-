@@ -1,0 +1,2712 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>For You ❤️</title>
+
+<style>
+
+/* =========================
+   BASIC
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    min-height:100vh;
+
+    background:
+    radial-gradient(
+        circle at top,
+        #ffb6d9 0%,
+        transparent 35%
+    ),
+    linear-gradient(
+        135deg,
+        #fff0f7,
+        #ffe0ed,
+        #fff7fb
+    );
+
+    color:#542438;
+    overflow-x:hidden;
+}
+
+
+/* =========================
+   SCREENS
+========================= */
+
+.screen{
+    min-height:100vh;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    padding:25px;
+}
+
+.screen.active{
+    display:flex;
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+    width:min(92%,850px);
+
+    margin:auto;
+
+    position:relative;
+
+    z-index:2;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card{
+    width:100%;
+
+    padding:35px 25px;
+
+    border-radius:30px;
+
+    background:
+    rgba(255,255,255,.68);
+
+    border:
+    1px solid
+    rgba(255,255,255,.8);
+
+    box-shadow:
+    0 20px 60px
+    rgba(150,55,100,.18);
+
+    backdrop-filter:blur(15px);
+}
+
+
+/* =========================
+   TEXT
+========================= */
+
+h1{
+    font-size:
+    clamp(35px,8vw,65px);
+
+    margin-bottom:18px;
+}
+
+h2{
+    font-size:
+    clamp(27px,6vw,45px);
+
+    margin-bottom:18px;
+}
+
+p{
+    font-size:18px;
+
+    line-height:1.7;
+
+    margin-bottom:20px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+button{
+    border:0;
+
+    border-radius:50px;
+
+    padding:14px 25px;
+
+    margin:8px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    box-shadow:
+    0 8px 20px
+    rgba(120,40,80,.15);
+}
+
+button:hover{
+    transform:
+    translateY(-3px)
+    scale(1.04);
+}
+
+button:active{
+    transform:scale(.96);
+}
+
+.primary{
+    background:#ff4f91;
+
+    color:white;
+}
+
+.hidden{
+    display:none !important;
+}
+
+
+/* =========================
+   HEART
+========================= */
+
+.heart{
+    font-size:90px;
+
+    display:block;
+
+    margin-bottom:15px;
+
+    animation:
+    heartbeat 1.2s infinite;
+}
+
+.final-heart{
+    font-size:110px;
+
+    animation:
+    heartbeat 1s infinite;
+}
+
+@keyframes heartbeat{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    15%{
+        transform:scale(1.18);
+    }
+
+    30%{
+        transform:scale(1);
+    }
+
+    45%{
+        transform:scale(1.12);
+    }
+
+}
+
+
+/* =========================
+   LOADER
+========================= */
+
+.loader{
+    width:85%;
+
+    max-width:450px;
+
+    height:14px;
+
+    background:#ffd1e2;
+
+    border-radius:20px;
+
+    margin:25px auto;
+
+    overflow:hidden;
+}
+
+.loader span{
+    display:block;
+
+    height:100%;
+
+    width:0;
+
+    background:#ff4f91;
+
+    border-radius:20px;
+
+    animation:
+    load 4s forwards;
+}
+
+@keyframes load{
+
+    to{
+        width:100%;
+    }
+
+}
+
+
+/* =========================
+   FLOATING PARTICLES
+========================= */
+
+.particle{
+    position:fixed;
+
+    pointer-events:none;
+
+    animation:
+    floatUp linear infinite;
+
+    z-index:0;
+
+    opacity:.7;
+}
+
+@keyframes floatUp{
+
+    from{
+        transform:
+        translateY(110vh)
+        rotate(0deg);
+
+        opacity:0;
+    }
+
+    15%{
+        opacity:.8;
+    }
+
+    to{
+        transform:
+        translateY(-15vh)
+        rotate(360deg);
+
+        opacity:0;
+    }
+
+}
+
+
+/* =========================
+   MESSAGE CARDS
+========================= */
+
+.message-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(
+        auto-fit,
+        minmax(140px,1fr)
+    );
+
+    gap:15px;
+
+    margin:25px 0;
+}
+
+.message-card{
+
+    min-height:130px;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    background:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:
+    0 8px 20px
+    rgba(100,30,60,.1);
+}
+
+.message-card:hover{
+
+    transform:
+    translateY(-8px)
+    rotate(1deg);
+}
+
+
+/* =========================
+   QUIZ
+========================= */
+
+.option{
+
+    display:block;
+
+    width:90%;
+
+    max-width:450px;
+
+    margin:12px auto;
+
+    background:white;
+
+    color:#542438;
+}
+
+.option.correct{
+    background:#b9f6ca;
+}
+
+.option.wrong{
+    background:#ffcdd2;
+}
+
+.progress{
+
+    height:10px;
+
+    background:#ffd1e2;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin:20px 0;
+}
+
+.progress span{
+
+    display:block;
+
+    height:100%;
+
+    background:#ff4f91;
+
+    width:0;
+
+    transition:.4s;
+}
+
+
+/* =========================
+   HEART GAME
+========================= */
+
+.game-area{
+
+    position:relative;
+
+    height:320px;
+
+    background:
+    rgba(255,255,255,.5);
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    margin:20px 0;
+}
+
+.game-heart{
+
+    position:absolute;
+
+    font-size:35px;
+
+    cursor:pointer;
+
+    animation:
+    pulse .8s infinite alternate;
+}
+
+@keyframes pulse{
+
+    to{
+        transform:scale(1.2);
+    }
+
+}
+
+
+/* =========================
+   MYSTERY BOXES
+========================= */
+
+.box-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:18px;
+
+    max-width:500px;
+
+    margin:25px auto;
+}
+
+.mystery{
+
+    min-height:150px;
+
+    border-radius:25px;
+
+    background:
+    linear-gradient(
+        145deg,
+        #ff6fa5,
+        #ff3f86
+    );
+
+    color:white;
+
+    font-size:45px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    transition:.4s;
+
+    padding:15px;
+}
+
+.mystery:hover{
+
+    transform:
+    rotate(-3deg)
+    scale(1.04);
+}
+
+.mystery.open{
+
+    background:white;
+
+    color:#542438;
+
+    font-size:17px;
+}
+
+
+/* =========================
+   TIMELINE
+========================= */
+
+.timeline{
+
+    text-align:left;
+
+    margin:30px auto;
+
+    max-width:600px;
+}
+
+.timeline-item{
+
+    padding:20px;
+
+    margin:15px 0;
+
+    border-left:
+    5px solid #ff4f91;
+
+    background:white;
+
+    border-radius:
+    0 18px 18px 0;
+}
+
+
+/* =========================
+   PASSWORD
+========================= */
+
+.secret-input{
+
+    padding:15px;
+
+    width:85%;
+
+    max-width:400px;
+
+    border-radius:30px;
+
+    border:
+    2px solid #ffc0d8;
+
+    outline:none;
+
+    font-size:16px;
+
+    text-align:center;
+}
+
+
+/* =========================
+   PROPOSAL BUTTONS
+========================= */
+
+.big-question{
+
+    font-size:
+    clamp(35px,9vw,70px);
+
+    color:#ff3f86;
+
+    margin:20px 0;
+}
+
+.yes-button{
+
+    font-size:22px;
+
+    padding:18px 38px;
+
+    background:#ff3f86;
+
+    color:white;
+}
+
+.no-button{
+
+    background:white;
+
+    color:#ff3f86;
+
+    position:relative;
+}
+
+
+/* IDK BUTTON */
+
+.idk-button{
+
+    background:white;
+
+    color:#ff3f86;
+
+    position:relative;
+}
+
+
+/* =========================
+   SUCCESS POPUP
+========================= */
+
+.success{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    rgba(255,236,245,.97);
+
+    z-index:100;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:25px;
+}
+
+.success.show{
+    display:flex;
+}
+
+
+/* =========================
+   FINAL REVEAL
+========================= */
+
+.final-reveal{
+
+    animation:
+    finalReveal .8s ease;
+}
+
+@keyframes finalReveal{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        scale(.75);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        scale(1);
+    }
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+
+    position:fixed;
+
+    bottom:25px;
+
+    left:50%;
+
+    transform:
+    translateX(-50%)
+    translateY(100px);
+
+    background:#542438;
+
+    color:white;
+
+    padding:14px 22px;
+
+    border-radius:30px;
+
+    z-index:500;
+
+    transition:.4s;
+}
+
+.toast.show{
+
+    transform:
+    translateX(-50%)
+    translateY(0);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:500px){
+
+    .card{
+        padding:28px 18px;
+    }
+
+    p{
+        font-size:16px;
+    }
+
+    .mystery{
+        min-height:125px;
+    }
+
+    button{
+        font-size:15px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     FLOATING PARTICLES
+========================= -->
+
+<div id="particles"></div>
+
+
+<!-- =========================
+     SCREEN 1
+========================= -->
+
+<section
+class="screen active"
+id="screen1"
+>
+
+<div class="container">
+
+<div class="card">
+
+<span class="heart">
+❤️
+</span>
+
+<h1>
+Hey You...
+</h1>
+
+<p>
+I made something for you.
+<br>
+But before you continue...
+</p>
+
+<div class="loader">
+
+<span></span>
+
+</div>
+
+<p id="loadingText">
+Preparing something special...
+</p>
+
+<button
+class="primary"
+onclick="nextScreen(2)"
+>
+Okay... I'm curious 👀
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SCREEN 2
+========================= -->
+
+<section
+class="screen"
+id="screen2"
+>
+
+<div class="container">
+
+<div class="card">
+
+<h2>
+One little rule 😌
+</h2>
+
+<p>
+You have to complete everything
+before reaching the final question.
+</p>
+
+<p>
+Ready?
+</p>
+
+<button
+class="primary"
+onclick="nextScreen(3)"
+>
+Let's go ❤️
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SCREEN 3
+========================= -->
+
+<section
+class="screen"
+id="screen3"
+>
+
+<div class="container">
+
+<div class="card">
+
+<h2>
+A Few Things...
+</h2>
+
+<p>
+Tap every card 👀
+</p>
+
+<div class="message-grid">
+
+
+<div
+class="message-card"
+onclick="openMessage(
+this,
+'Your smile is honestly dangerous 😭❤️'
+)"
+>
+
+💌
+
+<br>
+
+Tap me
+
+</div>
+
+
+<div
+class="message-card"
+onclick="openMessage(
+this,
+'You somehow make ordinary moments feel special.'
+)"
+>
+
+✨
+
+<br>
+
+Tap me
+
+</div>
+
+
+<div
+class="message-card"
+onclick="openMessage(
+this,
+'Talking to you is one of those little things I look forward to.'
+)"
+>
+
+🥹
+
+<br>
+
+Tap me
+
+</div>
+
+
+<div
+class="message-card"
+onclick="openMessage(
+this,
+'And yes... there is a reason I made this entire website 😌❤️'
+)"
+>
+
+👀
+
+<br>
+
+Tap me
+
+</div>
+
+
+</div>
+
+
+<button
+id="reasonNext"
+class="primary hidden"
+onclick="nextScreen(4)"
+>
+Okay... continue 👀
+</button>
+
+</div>
+
+</div>
+
+  </section>
+  <!-- =========================
+     SCREEN 4 — MINI QUIZ
+========================= -->
+
+<section
+class="screen"
+id="screen4"
+>
+
+<div class="container">
+
+<div class="card">
+
+<h2>
+Mini Quiz 🧠
+</h2>
+
+<p id="question">
+Loading...
+</p>
+
+<div class="progress">
+
+<span id="quizProgress"></span>
+
+</div>
+
+<div id="options"></div>
+
+<p id="quizResult"></p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SCREEN 5 — HEART GAME
+========================= -->
+
+<section
+class="screen"
+id="screen5"
+>
+
+<div class="container">
+
+<div class="card">
+
+<h2>
+Catch 5 Hearts ❤️
+</h2>
+
+<p>
+Click the hearts before they disappear!
+</p>
+
+<h3>
+Score:
+<span id="score">0</span>/5
+</h3>
+
+<div
+class="game-area"
+id="gameArea"
+>
+</div>
+
+<button
+class="primary"
+id="gameStart"
+onclick="startGame()"
+>
+Start Game 🎯
+</button>
+
+<button
+class="primary hidden"
+id="gameNext"
+onclick="nextScreen(6)"
+>
+I did it 😎
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SCREEN 6 — MYSTERY BOXES
+========================= -->
+
+<section
+class="screen"
+id="screen6"
+>
+
+<div class="container">
+
+<div class="card">
+
+<h2>
+Mystery Boxes 🎁
+</h2>
+
+<p>
+Open all four.
+<br>
+Some may be cute...
+some may roast you 😂
+</p>
+
+<div class="box-grid">
+
+
+<div
+class="mystery"
+onclick="openBox(
+this,
+'Okay okay... you are pretty special. 😌❤️'
+)"
+>
+🎁
+</div>
+
+
+<div
+class="mystery"
+onclick="openBox(
+this,
+'Plot twist: I actually spent way too much time making this 😂'
+)"
+>
+🎁
+</div>
+
+
+<div
+class="mystery"
+onclick="openBox(
+this,
+'You found a secret message: You make me smile. 🥹'
+)"
+>
+🎁
+</div>
+
+
+<div
+class="mystery"
+onclick="openBox(
+this,
+'FINAL BOX: There is something important waiting for you... 👀'
+)"
+>
+🎁
+</div>
+
+
+</div>
+
+
+<button
+id="boxNext"
+class="primary hidden"
+onclick="nextScreen(7)"
+>
+Something important? 👀
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SCREEN 7 — LITTLE STORY
+========================= -->
+
+<section
+class="screen"
+id="screen7"
+>
+
+<div class="container">
+
+<div class="card">
+
+<h2>
+A Little Story 💭
+</h2>
+
+<div class="timeline">
+
+
+<div class="timeline-item">
+
+<strong>
+Chapter 1 🌱
+</strong>
+
+<p>
+Two people meet and somehow
+become part of each other's story.
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<strong>
+Chapter 2 ✨
+</strong>
+
+<p>
+Random conversations become memories.
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<strong>
+Chapter 3 ❤️
+</strong>
+
+<p>
+Somewhere along the way,
+one person started becoming
+a little more special.
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<strong>
+Chapter 4 👀
+</strong>
+
+<p>
+And now...
+we have reached this page.
+</p>
+
+</div>
+
+
+</div>
+
+
+<button
+class="primary"
+onclick="nextScreen(8)"
+>
+Continue ❤️
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SCREEN 8 — SECRET LEVEL
+========================= -->
+
+<section
+class="screen"
+id="screen8"
+>
+
+<div class="container">
+
+<div class="card">
+
+<h2>
+Secret Level 🔐
+</h2>
+
+<p>
+Enter the secret word to unlock
+the final stage.
+</p>
+
+<input
+id="secretInput"
+class="secret-input"
+type="text"
+placeholder="Type something..."
+>
+
+<br>
+<br>
+
+<button
+class="primary"
+onclick="checkSecret()"
+>
+Unlock 🔓
+</button>
+
+<p id="secretMessage"></p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SCREEN 9 — PROPOSAL ❤️
+========================= -->
+
+<section
+class="screen"
+id="screen9"
+>
+
+<div class="container">
+
+<div class="card">
+
+<div class="final-heart">
+❤️
+</div>
+
+<p>
+Okay...
+<br>
+No more games.
+<br>
+No more mystery.
+<br>
+No more hiding.
+</p>
+
+<h1 class="big-question">
+Will you be mine?
+</h1>
+
+<p>
+Think carefully... 👀❤️
+</p>
+
+
+<!-- YES -->
+
+<button
+class="yes-button"
+onclick="sayYes()"
+>
+YES ❤️
+</button>
+
+
+<!-- NO -->
+
+<button
+class="no-button"
+id="noButton"
+onclick="runAway()"
+>
+NO 😭
+</button>
+
+
+<!-- IDK -->
+
+<button
+class="idk-button"
+id="idkButton"
+onclick="runIDK()"
+>
+IDK 😭
+</button>
+
+
+<p id="noText"></p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SUCCESS POPUP
+========================= -->
+
+<div
+class="success"
+id="success"
+>
+
+<div>
+
+<div class="final-heart">
+💖
+</div>
+
+<h1>
+MISSION ACCOMPLISHED! 🎉
+</h1>
+
+<p>
+I knew you'd eventually
+choose the right button 😂❤️
+</p>
+
+<p>
+Thank you for making it this far.
+<br>
+And most importantly...
+</p>
+
+<h2>
+Thank you for choosing YES. 🥹❤️
+</h2>
+
+<button
+class="primary"
+onclick="closeSuccess()"
+>
+One More Thing 👀
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     SCREEN 10 — FINAL REVEAL
+========================= -->
+
+<section
+class="screen"
+id="screen10"
+>
+
+<div class="container">
+
+<div
+class="card"
+id="finalCard"
+>
+
+<div class="final-heart">
+💖
+</div>
+
+<h1>
+One More Thing...
+</h1>
+
+<p>
+If you reached this far,
+then I just want you to know...
+</p>
+
+<h2>
+You are really,
+really special to me. ❤️
+</h2>
+
+<p>
+No matter what happens,
+I'm glad I got to make
+this little corner of the
+internet for you.
+</p>
+
+<p>
+And maybe...
+this is just the beginning. 🥹
+</p>
+
+<button
+class="primary"
+onclick="finalMessage()"
+>
+Okay, I'm smiling 🥹
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     TOAST
+========================= -->
+
+<div
+class="toast"
+id="toast"
+>
+  </div>
+  <script>
+
+/* =========================
+   SCREEN SYSTEM
+========================= */
+
+function nextScreen(number){
+
+    document
+    .querySelectorAll(".screen")
+    .forEach(function(screen){
+
+        screen.classList.remove("active");
+
+    });
+
+    const target =
+        document.getElementById(
+            "screen" + number
+        );
+
+    if(target){
+
+        target.classList.add("active");
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    }
+
+}
+
+
+/* =========================
+   FLOATING PARTICLES
+========================= */
+
+const particles =
+document.getElementById("particles");
+
+const symbols = [
+    "❤️",
+    "💗",
+    "💕",
+    "✨",
+    "🌸",
+    "💖"
+];
+
+for(
+    let i=0;
+    i<35;
+    i++
+){
+
+    const particle =
+        document.createElement("div");
+
+    particle.className =
+        "particle";
+
+    particle.innerHTML =
+        symbols[
+            Math.floor(
+                Math.random() *
+                symbols.length
+            )
+        ];
+
+    particle.style.left =
+        Math.random()*100 + "%";
+
+    particle.style.animationDuration =
+        (6 + Math.random()*8) + "s";
+
+    particle.style.animationDelay =
+        Math.random()*8 + "s";
+
+    particle.style.fontSize =
+        (12 + Math.random()*20) + "px";
+
+    particles.appendChild(
+        particle
+    );
+
+}
+
+
+/* =========================
+   MESSAGE CARDS
+========================= */
+
+let openedMessages = 0;
+
+
+function openMessage(
+    card,
+    message
+){
+
+    if(
+        card.dataset.opened === "true"
+    ){
+        return;
+    }
+
+    card.dataset.opened = "true";
+
+    card.innerHTML =
+        message;
+
+    openedMessages++;
+
+    if(
+        openedMessages === 4
+    ){
+
+        document
+        .getElementById(
+            "reasonNext"
+        )
+        .classList.remove(
+            "hidden"
+        );
+
+    }
+
+}
+
+
+/* =========================
+   QUIZ
+========================= */
+
+const questions = [
+
+    {
+        q:
+        "What makes a good day better? 😌",
+
+        options:[
+            "Good food 🍕",
+            "Good sleep 😴",
+            "Good company ❤️",
+            "All of them 😂"
+        ],
+
+        answer:3
+    },
+
+    {
+        q:
+        "Which one is more dangerous? 👀",
+
+        options:[
+            "A cute smile",
+            "A cute laugh",
+            "Both",
+            "Definitely both 😭"
+        ],
+
+        answer:3
+    },
+
+    {
+        q:
+        "What should you do when someone makes a whole website for you?",
+
+        options:[
+            "Smile",
+            "Be surprised",
+            "Say thank you",
+            "All of the above ❤️"
+        ],
+
+        answer:3
+    }
+
+];
+
+
+let currentQuestion = 0;
+
+
+function loadQuestion(){
+
+    const q =
+        questions[
+            currentQuestion
+        ];
+
+    document.getElementById(
+        "question"
+    ).innerText =
+        q.q;
+
+    document.getElementById(
+        "quizProgress"
+    ).style.width =
+        (
+            currentQuestion /
+            questions.length *
+            100
+        ) + "%";
+
+    const options =
+        document.getElementById(
+            "options"
+        );
+
+    options.innerHTML = "";
+
+    q.options.forEach(
+        function(option,index){
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+            button.className =
+                "option";
+
+            button.innerText =
+                option;
+
+            button.onclick =
+                function(){
+
+                    answerQuiz(index);
+
+                };
+
+            options.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+function answerQuiz(index){
+
+    const q =
+        questions[
+            currentQuestion
+        ];
+
+    const buttons =
+        document.querySelectorAll(
+            ".option"
+        );
+
+    buttons.forEach(
+        function(button){
+
+            button.disabled = true;
+
+        }
+    );
+
+
+    if(
+        index === q.answer
+    ){
+
+        buttons[index]
+        .classList
+        .add("correct");
+
+        document.getElementById(
+            "quizResult"
+        ).innerText =
+            "Correct! 😎❤️";
+
+    }
+    else{
+
+        buttons[index]
+        .classList
+        .add("wrong");
+
+        document.getElementById(
+            "quizResult"
+        ).innerText =
+            "Nice try 😂❤️";
+
+    }
+
+
+    setTimeout(
+        function(){
+
+            currentQuestion++;
+
+
+            if(
+                currentQuestion <
+                questions.length
+            ){
+
+                document.getElementById(
+                    "quizResult"
+                ).innerText = "";
+
+                loadQuestion();
+
+            }
+            else{
+
+                document.getElementById(
+                    "quizProgress"
+                ).style.width =
+                    "100%";
+
+                document.getElementById(
+                    "question"
+                ).innerText =
+                    "You survived the quiz! 😂❤️";
+
+                document.getElementById(
+                    "options"
+                ).innerHTML = `
+
+                    <button
+                    class="primary"
+                    onclick="nextScreen(5)"
+                    >
+                    Quiz Complete ❤️
+                    </button>
+
+                `;
+
+            }
+
+        },
+        900
+    );
+
+}
+
+
+/* =========================
+   HEART GAME
+========================= */
+
+let score = 0;
+
+let gameRunning = false;
+
+
+function startGame(){
+
+    score = 0;
+
+    gameRunning = true;
+
+    document.getElementById(
+        "score"
+    ).innerText =
+        score;
+
+    document.getElementById(
+        "gameStart"
+    ).classList.add(
+        "hidden"
+    );
+
+    document.getElementById(
+        "gameNext"
+    ).classList.add(
+        "hidden"
+    );
+
+    document.getElementById(
+        "gameArea"
+    ).innerHTML = "";
+
+    createHeart();
+
+}
+
+
+function createHeart(){
+
+    if(!gameRunning){
+        return;
+    }
+
+    const area =
+        document.getElementById(
+            "gameArea"
+        );
+
+    const heart =
+        document.createElement(
+            "div"
+        );
+
+    heart.className =
+        "game-heart";
+
+    heart.innerText =
+        "❤️";
+
+    heart.style.left =
+        Math.random()*85 + "%";
+
+    heart.style.top =
+        Math.random()*80 + "%";
+
+
+    heart.onclick =
+        function(){
+
+            if(!gameRunning){
+                return;
+            }
+
+            score++;
+
+            document.getElementById(
+                "score"
+            ).innerText =
+                score;
+
+            heart.remove();
+
+
+            if(score >= 5){
+
+                gameRunning = false;
+
+                document.getElementById(
+                    "gameNext"
+                ).classList.remove(
+                    "hidden"
+                );
+
+                showToast(
+                    "You caught them all! ❤️"
+                );
+
+            }
+            else{
+
+                createHeart();
+
+            }
+
+        };
+
+
+    area.appendChild(
+        heart
+    );
+
+
+    setTimeout(
+        function(){
+
+            if(
+                heart.parentNode
+            ){
+
+                heart.remove();
+
+                if(gameRunning){
+
+                    createHeart();
+
+                }
+
+            }
+
+        },
+        1400
+    );
+
+}
+
+
+/* =========================
+   MYSTERY BOXES
+========================= */
+
+let openedBoxes = 0;
+
+
+function openBox(
+    box,
+    message
+){
+
+    if(
+        box.classList.contains(
+            "open"
+        )
+    ){
+        return;
+    }
+
+    box.classList.add(
+        "open"
+    );
+
+    box.innerHTML =
+        message;
+
+    openedBoxes++;
+
+
+    if(
+        openedBoxes === 4
+    ){
+
+        document
+        .getElementById(
+            "boxNext"
+        )
+        .classList.remove(
+            "hidden"
+        );
+
+    }
+
+}
+
+
+/* =========================
+   SECRET PASSWORD
+========================= */
+
+function checkSecret(){
+
+    const input =
+        document
+        .getElementById(
+            "secretInput"
+        )
+        .value
+        .trim()
+        .toLowerCase();
+
+    const message =
+        document.getElementById(
+            "secretMessage"
+        );
+
+
+    /* CHANGE YOUR PASSWORD HERE */
+
+    const secret =
+        "love";
+
+
+    if(
+        input === secret
+    ){
+
+        message.innerText =
+            "Unlocked! 🔓❤️";
+
+        message.style.color =
+            "#ff3f86";
+
+
+        setTimeout(
+            function(){
+
+                nextScreen(9);
+
+            },
+            1000
+        );
+
+    }
+    else{
+
+        message.innerText =
+            "Wrong secret 👀 Try again.";
+
+        message.style.color =
+            "#c62828";
+
+    }
+
+}
+
+
+/* =========================
+   NO BUTTON
+========================= */
+
+let noCount = 0;
+
+
+function runAway(){
+
+    noCount++;
+
+
+    const button =
+        document.getElementById(
+            "noButton"
+        );
+
+
+    const messages = [
+
+        "Are you sure? 😭",
+
+        "Think again 👀",
+
+        "Nice try 😂",
+
+        "That button is running away 😭",
+
+        "Please? 🥹",
+
+        "NO isn't available right now 😂",
+
+        "Try YES ❤️"
+
+    ];
+
+
+    document.getElementById(
+        "noText"
+    ).innerText =
+        messages[
+            Math.min(
+                noCount - 1,
+                messages.length - 1
+            )
+        ];
+
+
+    button.style.position =
+        "fixed";
+
+
+    button.style.left =
+        Math.random()*70 + 15 + "%";
+
+
+    button.style.top =
+        Math.random()*70 + 15 + "%";
+
+
+    const yes =
+        document.querySelector(
+            ".yes-button"
+        );
+
+
+    yes.style.transform =
+        `scale(${1 + noCount*.08})`;
+
+}
+
+
+/* =========================
+   IDK BUTTON 😭
+========================= */
+
+let idkCount = 0;
+
+
+function runIDK(){
+
+    idkCount++;
+
+
+    const button =
+        document.getElementById(
+            "idkButton"
+        );
+
+
+    const messages = [
+
+        "IDK bhi allowed nahi hai 😭",
+
+        "Thoda soch lo 👀",
+
+        "Button bhi confused hai 😂",
+
+        "Arre decide karo na 🥹",
+
+        "IDK bhaag raha hai 😭",
+
+        "Itna difficult question hai kya? 😂",
+
+        "YES ❤️ is waiting..."
+
+    ];
+
+
+    document.getElementById(
+        "noText"
+    ).innerText =
+        messages[
+            Math.min(
+                idkCount - 1,
+                messages.length - 1
+            )
+        ];
+
+
+    button.style.position =
+        "fixed";
+
+
+    button.style.left =
+        Math.random()*70 + 15 + "%";
+
+
+    button.style.top =
+        Math.random()*70 + 15 + "%";
+
+
+    const yes =
+        document.querySelector(
+            ".yes-button"
+        );
+
+
+    yes.style.transform =
+        `scale(${1 + idkCount*.06})`;
+
+}
+
+
+/* =========================
+   YES BUTTON ❤️
+========================= */
+
+function sayYes(){
+
+    document
+    .getElementById(
+        "success"
+    )
+    .classList.add(
+        "show"
+    );
+
+
+    createConfetti();
+
+}
+
+
+/* =========================
+   CONFETTI
+========================= */
+
+function createConfetti(){
+
+    const items = [
+
+        "❤️",
+        "💖",
+        "💕",
+        "💗",
+        "💘",
+        "✨",
+        "🎉",
+        "🥹",
+        "🌸"
+
+    ];
+
+
+    for(
+        let i=0;
+        i<80;
+        i++
+    ){
+
+        const piece =
+            document.createElement(
+                "div"
+            );
+
+
+        piece.innerText =
+            items[
+                Math.floor(
+                    Math.random() *
+                    items.length
+                )
+            ];
+
+
+        piece.style.position =
+            "fixed";
+
+
+        piece.style.left =
+            Math.random()*100 +
+            "vw";
+
+
+        piece.style.top =
+            "-30px";
+
+
+        piece.style.fontSize =
+            (
+                15 +
+                Math.random()*25
+            ) + "px";
+
+
+        piece.style.zIndex =
+            "300";
+
+
+        piece.style.transition =
+            `
+            transform
+            ${2+Math.random()*3}s
+            linear,
+            opacity 3s
+            `;
+
+
+        document.body.appendChild(
+            piece
+        );
+
+
+        setTimeout(
+            function(){
+
+                piece.style.transform =
+                    `
+                    translateY(110vh)
+                    rotate(
+                        ${Math.random()*720}deg
+                    )
+                    `;
+
+                piece.style.opacity =
+                    "0";
+
+            },
+            50
+        );
+
+
+        setTimeout(
+            function(){
+
+                piece.remove();
+
+            },
+            5000
+        );
+
+    }
+
+}
+
+
+/* =========================
+   CLOSE SUCCESS
+========================= */
+
+function closeSuccess(){
+
+    document
+    .getElementById(
+        "success"
+    )
+    .classList.remove(
+        "show"
+    );
+
+
+    nextScreen(10);
+
+}
+
+
+/* =========================
+   FINAL MESSAGE
+========================= */
+
+function finalMessage(){
+
+    const card =
+        document.getElementById(
+            "finalCard"
+        );
+
+
+    card.classList.remove(
+        "final-reveal"
+    );
+
+
+    void card.offsetWidth;
+
+
+    card.classList.add(
+        "final-reveal"
+    );
+
+
+    card.innerHTML = `
+
+        <div class="final-heart">
+            💖
+        </div>
+
+        <h1>
+            Then keep smiling. 🥹❤️
+        </h1>
+
+        <p>
+            Because your smile might just be
+            my favorite thing.
+        </p>
+
+        <h2>
+            The End...
+            <br>
+            or maybe just the beginning? ✨
+        </h2>
+
+        <p>
+            You made it all the way here.
+            <br>
+            So here's one last heart:
+            ❤️
+        </p>
+
+        <button
+        class="primary"
+        onclick="lastSurprise()"
+        >
+        One Last Surprise 👀
+        </button>
+
+    `;
+
+
+    createFinalHearts();
+
+}
+
+
+/* =========================
+   LAST SURPRISE
+========================= */
+
+function lastSurprise(){
+
+    const card =
+        document.getElementById(
+            "finalCard"
+        );
+
+
+    card.classList.remove(
+        "final-reveal"
+    );
+
+
+    void card.offsetWidth;
+
+
+    card.classList.add(
+        "final-reveal"
+    );
+
+
+    card.innerHTML = `
+
+        <div class="final-heart">
+            💘
+        </div>
+
+        <h1>
+            You found it! 🥹
+        </h1>
+
+        <p>
+            There wasn't actually
+            another secret level...
+        </p>
+
+        <h2>
+            I just wanted one more
+            reason to make you smile. ❤️
+        </h2>
+
+        <p>
+            Now seriously...
+            <br>
+            take care of that smile. 😌
+        </p>
+
+        <div
+        style="
+        font-size:55px;
+        margin-top:20px;
+        "
+        >
+            ❤️✨💖✨❤️
+        </div>
+
+    `;
+
+
+    createFinalHearts();
+
+}
+
+
+/* =========================
+   FINAL FLOATING HEARTS
+========================= */
+
+function createFinalHearts(){
+
+    const hearts = [
+
+        "❤️",
+        "💖",
+        "💕",
+        "💗",
+        "💘",
+        "🥹",
+        "✨"
+
+    ];
+
+
+    for(
+        let i=0;
+        i<30;
+        i++
+    ){
+
+        const heart =
+            document.createElement(
+                "div"
+            );
+
+
+        heart.innerText =
+            hearts[
+                Math.floor(
+                    Math.random() *
+                    hearts.length
+                )
+            ];
+
+
+        heart.style.position =
+            "fixed";
+
+
+        heart.style.left =
+            Math.random()*100 +
+            "vw";
+
+
+        heart.style.bottom =
+            "-40px";
+
+
+        heart.style.fontSize =
+            (
+                20 +
+                Math.random()*25
+            ) + "px";
+
+
+        heart.style.zIndex =
+            "400";
+
+
+        heart.style.pointerEvents =
+            "none";
+
+
+        heart.style.transition =
+            `
+            transform 3s linear,
+            opacity 3s
+            `;
+
+
+        document.body.appendChild(
+            heart
+        );
+
+
+        setTimeout(
+            function(){
+
+                heart.style.transform =
+                    `
+                    translateY(-110vh)
+                    rotate(
+                        ${Math.random()*500}deg
+                    )
+                    `;
+
+                heart.style.opacity =
+                    "0";
+
+            },
+            50
+        );
+
+
+        setTimeout(
+            function(){
+
+                heart.remove();
+
+            },
+            3500
+        );
+
+    }
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.innerText =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        function(){
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        2800
+    );
+
+}
+
+
+/* =========================
+   LOADING TEXT
+========================= */
+
+const loadingTexts = [
+
+    "Preparing something special...",
+
+    "Collecting courage... 😭",
+
+    "Adding some magic ✨",
+
+    "Almost ready...",
+
+    "Okay... here we go ❤️"
+
+];
+
+
+let textIndex = 0;
+
+
+setInterval(
+    function(){
+
+        const element =
+            document.getElementById(
+                "loadingText"
+            );
+
+
+        if(element){
+
+            textIndex =
+                (
+                    textIndex + 1
+                ) %
+                loadingTexts.length;
+
+
+            element.innerText =
+                loadingTexts[
+                    textIndex
+                ];
+
+        }
+
+    },
+    900
+);
+
+</script>
+
+
+</body>
+
+  </html>
