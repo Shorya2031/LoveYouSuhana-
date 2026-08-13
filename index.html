@@ -725,7 +725,59 @@ button:active{
     translateY(0);
 }
 
+/* =========================
+   MUSIC BUTTON
+========================= */
 
+.music-button{
+
+    position:fixed;
+
+    right:18px;
+
+    bottom:18px;
+
+    width:52px;
+
+    height:52px;
+
+    padding:0;
+
+    margin:0;
+
+    border-radius:50%;
+
+    background:#ff4f91;
+
+    color:white;
+
+    font-size:22px;
+
+    z-index:999;
+
+    box-shadow:
+    0 8px 25px
+    rgba(255,79,145,.35);
+}
+
+.music-button.playing{
+
+    animation:
+    musicPulse 1s infinite;
+}
+
+@keyframes musicPulse{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.12);
+    }
+
+   }
+   
 /* =========================
    MOBILE
 ========================= */
@@ -803,7 +855,7 @@ Preparing something special...
 
 <button
 class="primary"
-onclick="nextScreen(2)"
+onclick="startMusic(); nextScreen(2)"
 >
 Okay... I'm curious 👀
 </button>
@@ -1468,7 +1520,29 @@ Okay, I'm smiling 🥹
 
 </section>
 
+<!-- =========================
+     BACKGROUND MUSIC
+========================= -->
 
+<audio
+    id="bgMusic"
+    loop
+    preload="auto"
+>
+    <source
+        src="music.mp3"
+        type="audio/mpeg"
+    >
+</audio>
+
+<button
+    id="musicButton"
+    class="music-button"
+    onclick="toggleMusic()"
+>
+    🎵
+</button>
+   
 <!-- =========================
      TOAST
 ========================= -->
@@ -1479,7 +1553,89 @@ id="toast"
 >
   </div>
   <script>
+/* =========================
+   MUSIC SYSTEM 🎵
+========================= */
 
+const bgMusic =
+    document.getElementById("bgMusic");
+
+const musicButton =
+    document.getElementById("musicButton");
+
+let musicPlaying = false;
+
+
+/* Start music after first interaction */
+
+function startMusic(){
+
+    if(!musicPlaying){
+
+        bgMusic.volume = 0.45;
+
+        bgMusic.play()
+        .then(function(){
+
+            musicPlaying = true;
+
+            musicButton.innerText =
+                "🔊";
+
+            musicButton.classList.add(
+                "playing"
+            );
+
+        })
+        .catch(function(error){
+
+            console.log(
+                "Music could not start:",
+                error
+            );
+
+        });
+
+    }
+
+}
+
+
+/* ON / OFF */
+
+function toggleMusic(){
+
+    if(bgMusic.paused){
+
+        bgMusic.play();
+
+        musicPlaying = true;
+
+        musicButton.innerText =
+            "🔊";
+
+        musicButton.classList.add(
+            "playing"
+        );
+
+    }
+    else{
+
+        bgMusic.pause();
+
+        musicPlaying = false;
+
+        musicButton.innerText =
+            "🎵";
+
+        musicButton.classList.remove(
+            "playing"
+        );
+
+    }
+
+     }
+     
 /* =========================
    SCREEN SYSTEM
 ========================= */
